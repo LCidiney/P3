@@ -1,2 +1,2 @@
 # P3
- Calculadora de Bhaskara
+ Calculadora de Bhaskara (Equação de 2° grau)
