@@ -22,12 +22,11 @@ function attSection() {
             alert("Por favor, preencha todos os campos antes de continuar.");
             return;
         };
-        if (!verificarAcesso()) {
-            // Se o acesso estiver bloqueado, impedir a continuidade
-            return;
-        }
         localStorage.setItem('nome', nome);
         localStorage.setItem('cpf', cpf);
+        if (!verificarAcesso()) {
+            return;
+        };
         login.style.display = "none";
         telaOpcoes.style.display = "flex";
         telaResultado.style.display = "none";
@@ -50,7 +49,8 @@ function attSection() {
         telaOpcoes.style.display = "none";
         telaResultado.style.display = "none";
         button.innerHTML = "<b>INICIAR APLICAÇÃO</b>";
-        removerItems();
+        JSON.parse(localStorage.getItem('cpf'));
+        localStorage.removeItem('cpf');
     };
 };
 
@@ -76,6 +76,7 @@ function geraParagrafos() {
 
     if (retornoUsuario > 0) {
         let msgs = [
+            `PARABÉNS, VOCÊ GANHOU!!!`,
             `Nome: ${nome}`,
             `CPF: ${cpf}`,
             `Valor investido: R$${invest},00`,
@@ -88,16 +89,22 @@ function geraParagrafos() {
         });
     } else {
         let msgs = [
+            `PERDEU OTÁRIO!!!`,
             `Nome: ${nome}`,
             `CPF: ${cpf}`,
             `Valor investido: R$${invest},00`,
-            `Valor roubado: R$${invest}`
+            `Valor roubado: R$${invest},00`,
         ];
         msgs.forEach(msg => {
             let paragrafo = document.createElement('p');
             paragrafo.textContent = msg;
             telaResult.appendChild(paragrafo);
         });
+        let imagem = document.createElement('img');
+        imagem.src = "./assets/imgs/urubu_voando.jpg";
+        imagem.alt = "urubu_voando";
+        imagem.classList.add('urubu_voando');
+        telaResult.appendChild(imagem);
     };
 }
 
@@ -109,48 +116,51 @@ function calcInvest() {
     if (invest === 100 && lucroUrubu > invest) {
         retornoUsuario = invest + 150;
         lucroUrubu = lucroUrubu - 150;
+        caixaUrubu = caixaUrubu - 150;
     } else if (invest === 150 && lucroUrubu > invest) {
         retornoUsuario = invest + 150;
         lucroUrubu = lucroUrubu - 150;
+        caixaUrubu = caixaUrubu - 150;
     } else if (invest === 200 && lucroUrubu > invest) {
         retornoUsuario = invest + 350;
         lucroUrubu = lucroUrubu - 350;
+        caixaUrubu = caixaUrubu - 350;
     } else if (invest === 350 && lucroUrubu > invest) {
         retornoUsuario = invest + 350;
         lucroUrubu = lucroUrubu - 350;
+        caixaUrubu = caixaUrubu - 350;
     } else if (invest === 400 && lucroUrubu > invest) {
         retornoUsuario = invest + 550;
         lucroUrubu = lucroUrubu - 550;
+        caixaUrubu = caixaUrubu - 550;
     } else if (invest === 550 && lucroUrubu > invest) {
         retornoUsuario = invest + 550;
         lucroUrubu = lucroUrubu - 550;
+        caixaUrubu = caixaUrubu - 550;
     } else {
         caixaUrubu = caixaUrubu + invest;
         lucroUrubu = lucroUrubu + invest;
         retornoUsuario = retornoUsuario - invest;
         let cpfsBloqueados = JSON.parse(localStorage.getItem('cpfsBloqueados')) || [];
-        console.log('CPFs bloqueados antes:', cpfsBloqueados); // Debugging
+        let cpf = JSON.parse(localStorage.getItem('cpf'));
         if (!cpfsBloqueados.includes(cpf)) {
             cpfsBloqueados.push(cpf);
             localStorage.setItem('cpfsBloqueados', JSON.stringify(cpfsBloqueados));
-            console.log('CPF adicionado:', cpf); // Debugging
         }
-        console.log('CPFs bloqueados depois:', cpfsBloqueados); // Debugging
         }
-    
     localStorage.setItem('retornoUsuario', retornoUsuario);
     localStorage.setItem('lucroUrubu', lucroUrubu);
     localStorage.setItem('caixaUrubu', caixaUrubu);
 };
 
 function verificarAcesso() {
-    let cpf = localStorage.getItem('cpf');
+    let cpf = JSON.parse(localStorage.getItem('cpf'));
     let cpfsBloqueados = JSON.parse(localStorage.getItem('cpfsBloqueados')) || [];
 
     if (cpfsBloqueados.includes(cpf)) {
         alert("Acesso bloqueado para este CPF.");
-        return false; // Bloquear o acesso
+        return false;
     }
-    return true; // Permitir o acesso
+    return true;
 };
 
