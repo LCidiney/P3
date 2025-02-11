@@ -11,10 +11,42 @@
         <h1>Bem-Vindo ao Urubu do PIX 3</h1>
     </header>
     <main>
-        <section id="content">
+        <section class="content">
             <div id="tabela_trade"><img src="./assets/imgs/tabela_trade.webp" alt="tabela_trade"></div>
-            <button onclick="updateContent()" class="btn-transf"><b>INICIAR APLICAÇÃO</b></button>
         </section>
+
+        <section class="login">
+            <div class="get-CPF">
+                <label for="cpf"> Digite seu nome:</label>
+                <input type="text" id="nome" required>
+                <label for="cpf"> Digite seu CPF:</label>
+                <input type="text" id="cpf" required>
+            </div>
+        </section>
+
+        <section class="tela-opcoes">
+            <div><p id="lucro-invest"><b>Lucro investimento: </b></p></div>
+            <form id="formulario">
+                <label for="op1">R$100,00</label>
+                <input type="radio" id="op1" name="opcoes" value="100">
+                <label for="op1">R$150,00</label>
+                <input type="radio" id="op2" name="opcoes" value="150">
+                <label for="op1">R$200,00</label>
+                <input type="radio" id="op3" name="opcoes" value="200">
+                <label for="op1">R$350,00</label>
+                <input type="radio" id="op4" name="opcoes" value="350">
+                <label for="op1">R$400,00</label>
+                <input type="radio" id="op5" name="opcoes" value="400">
+                <label for="op1">R$550,00</label>
+                <input type="radio" id="op6" name="opcoes" value="550">
+            </form>
+        </section>
+
+        <section id="tela-resultado">
+            <p><b>Parabéns, você chegou aqui:</b></p>
+            <div id="resultado-lucro"></div>
+        </section>
+        <button  class="btn-transf"><b>INICIAR APLICAÇÃO</b></button>
     </main>
     <script src="./js/script.js"></script>
 </body>

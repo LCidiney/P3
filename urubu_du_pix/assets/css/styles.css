@@ -18,11 +18,27 @@ main {
     justify-content: center;
     align-items: center;
     margin: 100px;
+    flex-direction: column;
 }
 
-section {
+.content {
     display: flex;
     flex-direction: column;
+}
+
+.login,.tela-opcoes, #tela-resultado {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    width: 500px;
+    height: 504px;
+}
+
+.get-CPF {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    align-self: center;
 }
 
 #tabela_trade {
@@ -55,3 +71,13 @@ section {
     background-color: #9c9b9b;
 }
 
+#formulario {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
