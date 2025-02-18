@@ -26,7 +26,7 @@ main {
     flex-direction: column;
 }
 
-.login, .tela-opcoes, #tela-resultado {
+.login,.tela-opcoes, #tela-resultado {
     display: none;
     flex-direction: column;
     justify-content: center;
