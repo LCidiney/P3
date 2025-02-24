@@ -1,0 +1,88 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: aliceblue;
+    display: flex;
+    flex-direction: column; 
+}
+
+header {
+    background-color: rgb(86, 215, 219);
+    padding: 1rem;
+    text-align: center;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 100px;
+    flex-direction: column;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+}
+
+.login,.tela-opcoes, #tela-resultado {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    width: 500px;
+    height: 504px;
+}
+
+.get-CPF {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    align-self: center;
+}
+
+#tabela_trade {
+    width: 500px;
+    height: auto;
+    overflow: hidden;
+}
+#tabela_trade img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.btn-transf {
+    background-color: rgb(86, 215, 219);
+    border: none;
+    padding: 15px 32px;
+    margin: 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    border-radius: 5px;
+
+}
+
+.btn-transf:hover {
+    background-color: #9c9b9b;
+}
+
+#formulario {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.urubu_voando {
+    width: 500px;
+    height: auto;
+}
