@@ -10,22 +10,27 @@
 
 <body>
     <header>Lucro investimento:</header>
+    <div class="userData">
+        <p id="name">Nome:</p>
+        <p id="cpf">CPF:</p>
+        <p id="balance">Saldo:</p>
+    </div>
     <main>
         <form id="formulario">
-            <label for="op1">R$100,00 retorna R$250,00</label>
+            <label for="op1">R$100,00 => R$250,00</label>
             <input type="radio" id="op1" name="opcoes" value="100">
-            <label for="op1">R$150,00 retorna R$300,00</label>
+            <label for="op1">R$150,00 => R$300,00</label>
             <input type="radio" id="op2" name="opcoes" value="150">
-            <label for="op1">R$200,00 retorna R$250,00</label>
+            <label for="op1">R$200,00 => R$550,00</label>
             <input type="radio" id="op3" name="opcoes" value="200">
-            <label for="op1">R$350,00 retorna R$250,00</label>
+            <label for="op1">R$350,00 => R$700,00</label>
             <input type="radio" id="op4" name="opcoes" value="350">
-            <label for="op1">R$400,00 retorna R$250,00</label>
+            <label for="op1">R$400,00 => R$950,00</label>
             <input type="radio" id="op5" name="opcoes" value="400">
-            <label for="op1">R$550,00 retorna R$250,00</label>
+            <label for="op1">R$550,00 => R$1100,00</label>
             <input type="radio" id="op6" name="opcoes" value="550">
+            <button type="submit" class="btn-transf">Investir</button>
         </form>
-        <button class="btn-transf">teste</button>
     </main>
     <script src="./assets/js/script.js"></script>
 </body>

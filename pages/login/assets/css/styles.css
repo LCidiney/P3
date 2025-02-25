@@ -46,7 +46,7 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 50px;
+    margin: 25px;
 }
 
 .input-cpf {
@@ -54,6 +54,15 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin: 25px;
+    
+}
+.input-valor {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 25px;
     
 }
 

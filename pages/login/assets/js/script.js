@@ -3,9 +3,10 @@ let users;
 let user;
 
 class User {
-    constructor(name, cpf) {
+    constructor(name, cpf, saldo) {
         this.name = name;
         this.cpf = cpf;
+        this.saldo = saldo;
     }
 }
 
@@ -20,16 +21,18 @@ function createUser() {
     try {
         const name = document.querySelector("#name").value.trim();
         const cpf = document.querySelector("#cpf").value;
-        
-        if (!name || !cpf) {
+        const saldo = document.querySelector('#valor').value.trim();
+
+        if (!name || !cpf || !saldo) {
             throw new Error("Por favor, preencha todos os campos");
         }
-        
+
         if (!isValidCPF(cpf)) {
             throw new Error("CPF inválido");
         }
-        
-        user = JSON.stringify(new User(name, cpf));
+
+        user = JSON.stringify(new User(name, cpf, saldo));
+        localStorage.setItem('user', user);
         if (!accessValidator(user)) {
             usersControl(user);
         } else {
@@ -80,3 +83,4 @@ function isValidCPF(cpf) {
     if (resto !== parseInt(cpf.charAt(10))) return false;
     return true;
 }
+
