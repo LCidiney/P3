@@ -1,88 +1,61 @@
 body {
-    font-family: Arial, sans-serif;
+    background-color: rgb(122, 122, 122);
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin: 0;
     padding: 0;
-    background-color: aliceblue;
-    display: flex;
-    flex-direction: column; 
+    height: 100vh;
 }
 
 header {
-    background-color: rgb(86, 215, 219);
-    padding: 1rem;
-    text-align: center;
+    display: flex;
+    background-color: darkcyan;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    font-size: 1em;
+    border-radius: 5px;
+    margin: 10px 0px;
+    height: 40px;
 }
 
 main {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 100px;
-    flex-direction: column;
-}
-
-.content {
-    display: flex;
-    flex-direction: column;
-}
-
-.login,.tela-opcoes, #tela-resultado {
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    width: 500px;
-    height: 504px;
-}
-
-.get-CPF {
-    display: flex;
-    flex-direction: column;
-    width: 400px;
-    align-self: center;
-}
-
-#tabela_trade {
-    width: 500px;
-    height: auto;
-    overflow: hidden;
-}
-#tabela_trade img {
-    width: 100%;
-    height: auto;
+    margin-top: 250px;
+    padding: 0px 10px;
     border-radius: 5px;
-}
-
-.btn-transf {
-    background-color: rgb(86, 215, 219);
-    border: none;
-    padding: 15px 32px;
-    margin: 16px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-    border-radius: 5px;
-
-}
-
-.btn-transf:hover {
-    background-color: #9c9b9b;
+    background-color: darkcyan;
 }
 
 #formulario {
     display: flex;
     flex-direction: column;
-}
-
-label {
-    display: flex;
     justify-content: center;
-    padding: 10px;
+    align-items: center;
+    margin: 20px 0px;
+    padding: 0px 10px;
+    width: 300px;
+    height: 300px;
+    border-radius: 5px;
+    background-color: darkcyan;
 }
 
-.urubu_voando {
-    width: 500px;
-    height: auto;
+.btn-transf {
+    background-color: rgb(116, 116, 116);
+    width: 50%;
+    height: 50px;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    border: 0;
+    border-radius: 5px;
+    text-transform: uppercase;
+}
+
+.btn-transf:hover {
+    background-color: azure;
 }
