@@ -1,5 +1,6 @@
 const form = document.querySelector(".login");
-let users;
+const buttonLogin = document.querySelector('.btn-login');
+const buttonRegister = document.querySelector('.btn-register');
 let user;
 
 class User {
@@ -7,14 +8,19 @@ class User {
         this.name = name;
         this.cpf = cpf;
         this.saldo = saldo;
+        this.status = "Active";
+        this.attempts = 0;
     }
 }
 
-form.addEventListener('submit', function (e) {
+buttonLogin.addEventListener('click', function (e) {
     e.preventDefault();
-    isValidCPF(cpf);
-    createUser();
+    clicked(e);
+});
 
+buttonRegister.addEventListener('click', function (e) {
+    e.preventDefault();
+    clicked(e);
 });
 
 function createUser() {
@@ -22,42 +28,82 @@ function createUser() {
         const name = document.querySelector("#name").value.trim();
         const cpf = document.querySelector("#cpf").value;
         const saldo = document.querySelector('#valor').value.trim();
-
         if (!name || !cpf || !saldo) {
-            throw new Error("Por favor, preencha todos os campos");
+            throw new Error("Por favor, preencha todos os campos!");
         }
-
         if (!isValidCPF(cpf)) {
-            throw new Error("CPF inválido");
+            throw new Error("CPF inválido!");
         }
-
         user = JSON.stringify(new User(name, cpf, saldo));
         localStorage.setItem('user', user);
-        if (!accessValidator(user)) {
-            usersControl(user);
+        if (!accessValidator()) {
+            usersRegister();
         } else {
-            alert("Usuário com este CPF já existe!");
+            alert('Usuário já cadastrado!');
         }
     } catch (error) {
         alert(error.message);
     }
 }
 
-function usersControl(user) {
-    users = JSON.parse(localStorage.getItem('users')) || [];
-    users.push(user);
-    localStorage.setItem("users", JSON.stringify(users));
-    alert("Usuário cadastrado com sucesso!");
-    window.location.href = "../opcoes/index.html";
+function loginUser() {
+    try {
+        const name = document.querySelector("#name").value.trim();
+        const cpf = document.querySelector("#cpf").value;
+        const saldo = document.querySelector('#valor').value.trim();
+        if (!name || !cpf || !saldo) {
+            throw new Error("Por favor, preencha todos os campos!");
+        }
+        if (!isValidCPF(cpf)) {
+            throw new Error("CPF inválido");
+        }
+        const user = JSON.stringify(new User(name, cpf, saldo));
+        localStorage.setItem('user', user);
+        if (!accessValidator()) {
+            alert('Erro no login!');
+        } else {
+            window.location.href = "../opcoes/index.html";
+        }
+    } catch (error) {
+        alert(error.message);
+    }
 }
 
-function accessValidator(user) {
-    const parsedUsers = JSON.parse(user);
-    const users = JSON.parse(localStorage.getItem('users')) || [];
-    return users.some(storedUser => {
+function usersRegister() {
+    let users = JSON.parse(localStorage.getItem('users')) || [];
+    let user = JSON.parse(localStorage.getItem('user'));
+    const userExists = users.some(storedUser => {
         const parsedStoredUser = JSON.parse(storedUser);
-        return parsedStoredUser.cpf === parsedUsers.cpf;
+        if (user.cpf === parsedStoredUser.cpf && parsedStoredUser.status === 'Active') {
+            alert('Usuário já cadastrado!');
+            return true;
+        } else if (user.cpf === parsedStoredUser.cpf && parsedStoredUser.status === 'Blocked') {
+            alert('Erro no registro!');
+            return true;
+        }
+        return false;
     });
+    if (userExists) {
+        return;
+    }
+    user = JSON.stringify(user);
+    localStorage.setItem('user', user);
+    users.push(user);
+    users = JSON.stringify(users);
+    localStorage.setItem("users", users);
+    alert("Usuário cadastrado com sucesso!");
+}
+
+function accessValidator() {
+    const user = JSON.parse(localStorage.getItem('user'));
+    const users = JSON.parse(localStorage.getItem('users'));
+    if (!!users) {
+        return users.some(storedUser => {
+            const parsedStoredUser = JSON.parse(storedUser);
+            return user.cpf === parsedStoredUser.cpf && parsedStoredUser.status === 'Active';
+        });
+    }
+    return false;
 }
 
 function isValidCPF(cpf) {
@@ -84,3 +130,12 @@ function isValidCPF(cpf) {
     return true;
 }
 
+function clicked(e) {
+    e.preventDefault();
+    if (e.target === buttonRegister) {
+        createUser();
+    } else if (e.target === buttonLogin) {
+        e.preventDefault();
+        loginUser();
+    }
+}
